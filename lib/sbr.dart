@@ -11,6 +11,7 @@ class SPR extends StatefulWidget {
 class _SPRState extends State<SPR> {
   int comp = 1;
   int user = 1;
+  int round = 0;
   int compScore = 0;
   int userScore = 0;
 
@@ -23,8 +24,10 @@ class _SPRState extends State<SPR> {
             (comp == 3 && user == 1) ||
             (comp == 1 && user == 2)) {
           userScore++;
+          round++;
         } else {
           compScore++;
+          round++;
         }
       }
 
@@ -74,6 +77,27 @@ class _SPRState extends State<SPR> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
+                padding: const EdgeInsetsDirectional.only(bottom: 80.0),
+                child: Column(
+                  children: [
+                    Text(
+                      "Round #$round",
+                      style: TextStyle(
+                          color: Colors.yellowAccent.shade100,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Container(
+                      height: 5,
+                      width: 150,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.yellow.shade100),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsetsDirectional.only(start: 50, end: 70),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,6 +126,13 @@ class _SPRState extends State<SPR> {
                       padding: const EdgeInsets.all(12.0),
                       child: Image.asset("assets/images/image$comp.png"),
                     ),
+                  ),
+                  Text(
+                    "Vs",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
                   Expanded(
                     child: Padding(
