@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class SPR extends StatefulWidget {
@@ -14,10 +13,11 @@ class _SPRState extends State<SPR> {
   int user = 1;
   int compScore = 0;
   int userScore = 0;
+
   void randMe() {
     setState(() {
-      comp = Random().nextInt(3) + 1;
-      user = Random().nextInt(3) + 1;
+      comp = Random().nextInt(2) + 1;
+      user = Random().nextInt(2) + 1;
       if (comp != user) {
         if ((comp == 2 && user == 3) ||
             (comp == 3 && user == 1) ||
@@ -27,6 +27,35 @@ class _SPRState extends State<SPR> {
           compScore++;
         }
       }
+
+      if (compScore == 5 || userScore == 5) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Game Over'),
+              content: Text(userScore == 5 ? 'You won!' : 'Computer won!'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    resetGame();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Play Again'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
+  }
+
+  void resetGame() {
+    setState(() {
+      compScore = 0;
+      userScore = 0;
     });
   }
 
@@ -47,38 +76,41 @@ class _SPRState extends State<SPR> {
               Padding(
                 padding: const EdgeInsetsDirectional.only(start: 50, end: 70),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Computer",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "You",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Computer",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      "You",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
-              Row(children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Image.asset("assets/images/image$comp.png"),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Image.asset("assets/images/image$comp.png"),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Image.asset("assets/images/image$user.png"),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Image.asset("assets/images/image$user.png"),
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(top: 80.0),
                 child: Text(
