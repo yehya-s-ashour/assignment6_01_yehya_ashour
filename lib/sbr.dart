@@ -59,6 +59,7 @@ class _SPRState extends State<SPR> {
     setState(() {
       compScore = 0;
       userScore = 0;
+      round = 0;
     });
   }
 
@@ -68,7 +69,7 @@ class _SPRState extends State<SPR> {
       onTap: randMe,
       child: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("S P R")),
+          title: const Center(child: Text("S P R")),
           backgroundColor: Colors.blueGrey,
         ),
         backgroundColor: Colors.blueGrey,
@@ -101,7 +102,7 @@ class _SPRState extends State<SPR> {
                 padding: const EdgeInsetsDirectional.only(start: 50, end: 70),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Text(
                       "Computer",
                       style: TextStyle(
@@ -127,7 +128,7 @@ class _SPRState extends State<SPR> {
                       child: Image.asset("assets/images/image$comp.png"),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Vs",
                     style: TextStyle(
                         color: Colors.white,
@@ -146,7 +147,7 @@ class _SPRState extends State<SPR> {
                 padding: const EdgeInsetsDirectional.only(top: 80.0),
                 child: Text(
                   "Computer Score: $compScore",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w600),
@@ -156,7 +157,7 @@ class _SPRState extends State<SPR> {
                 padding: const EdgeInsetsDirectional.only(top: 15.0),
                 child: Text(
                   "User Score: $userScore",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w600),
